@@ -1,25 +1,32 @@
-variable "prefix" {
-  default = "dev"
-}
+provider "local" {}
 
-variable "files" {
-  default = {
-    "file1.txt" = "Hello from file 1"
-    "file2.txt" = "Hello from file 2"
-    "notes.txt" = "Terraform is fun!"
-    "secret.txt" = "This is hidden power"
+# Call for DEV
+module "dev_infrastructure" {
+  source      = "./modules/welcome_card"
+  user_name   = "Tania"
+  environment = "dev"
+  file_data   = {
+    "task.txt"   = "Complete the Terraform lab"
+    "status.txt" = "Learning modules"
   }
 }
 
-provider "local" {}
-
-resource "local_file" "files" {
-  for_each = var.files
-
-  filename = "${var.prefix}-${each.key}"
-  content  = each.value
+# Call for PROD (using the default file_data defined in the module)
+module "prod_infrastructure" {
+  source      = "./modules/welcome_card"
+  user_name   = "Tania"
+  environment = "prod"
 }
 
-output "created_files" {
-  value = [for f in local_file.files : f.filename]
+# Call for TEST (using the default file_data defined in the module)
+module "prod_infrastructure" {
+  source      = "./modules/welcome_card"
+  user_name   = "Tania"
+  environment = "test"
+}
+
+output "dev_files" {
+  value = [for f in module.dev_infrastructure : "File created!"]
+  # Note: To output filenames from a module, you'd need a 'module output' 
+  # but let's keep it simple for now.
 }
