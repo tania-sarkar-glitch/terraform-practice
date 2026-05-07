@@ -45,6 +45,12 @@ SET ${s.name}=${s.value}
 %{ endfor ~}
 EOT
 }
+
+resource "local_file" "log" {
+  filename = "${path.root}/system.log"
+  content  = "Log Initialized at ${timestamp()}"
+}
+
 #output "dev_file_location" {
   # Syntax: module.<NAME>.<OUTPUT_NAME>
  # value = module.dev_infrastructure.card_path
