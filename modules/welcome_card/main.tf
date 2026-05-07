@@ -1,5 +1,7 @@
-resource "local_file" "card" {
-  # We use the variables to name the file dynamically
-  filename = "${path.module}/../../cards/welcome-${var.user_name}-${var.environment}.txt"
-  content  = "Hello ${var.user_name}! Welcome to the ${var.environment} environment managed by Terraform."
+resource "local_file" "welcome_files" {
+  for_each = var.file_data
+
+  # This creates files like: cards/dev-Tania-welcome.txt
+  filename = "${path.root}/cards/${var.environment}-${var.user_name}-${each.key}"
+  content  = "${each.value}\nEnvironment: ${var.environment}\nUser: ${var.user_name}"
 }
