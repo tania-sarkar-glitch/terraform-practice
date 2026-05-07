@@ -1,3 +1,0 @@
-Terraform modules are powerful.
-Environment: prod
-User: Tania
