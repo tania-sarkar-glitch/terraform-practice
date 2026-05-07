@@ -1,0 +1,3 @@
+Complete the Terraform lab
+Environment: dev
+User: Tania

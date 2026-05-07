@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"dev_infrastructure","Source":"./modules/welcome_card","Dir":"modules/welcome_card"},{"Key":"prod_infrastructure","Source":"./modules/welcome_card","Dir":"modules/welcome_card"},{"Key":"test_infrastructure","Source":"./modules/welcome_card","Dir":"modules/welcome_card"}]}
