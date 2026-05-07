@@ -1,15 +1,20 @@
 variable "user_name" {
   type        = string
-  description = "The name of the user for the card"
 }
 
 variable "environment" {
   type        = string
-  description = "The target environment (dev, prod, test.)"
-  
-  # Professional Touch: Validation!
+  # This validation ensures only approved environments are used
   validation {
     condition     = contains(["dev", "prod", "test"], var.environment)
     error_message = "Environment must be dev, prod, or test."
+  }
+}
+
+variable "file_data" {
+  type = map(string)
+  default = {
+    "welcome.txt" = "Welcome to the team!"
+    "notes.txt"   = "Terraform modules are powerful."
   }
 }
